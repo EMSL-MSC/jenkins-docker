@@ -12,4 +12,5 @@ RUN su - jenkins -c 'vagrant plugin install vagrant-berkshelf'
 RUN service sshd start
 RUN service sshd stop
 
+EXPOSE 22
 CMD ["/usr/sbin/sshd", "-D"]

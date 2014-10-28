@@ -11,4 +11,5 @@ RUN su - jenkins -c 'vagrant plugin install vagrant-openstack-provider'
 RUN su - jenkins -c 'vagrant plugin install vagrant-berkshelf'
 RUN sshd-keygen
 
+EXPOSE 22
 CMD ["/usr/sbin/sshd", "-D"]
