@@ -11,8 +11,7 @@ RUN su - jenkins -c '/opt/chefdk/embedded/bin/gem install knife-openstack kitche
 RUN su - jenkins -c 'vagrant plugin install vagrant-openstack-provider'
 RUN su - jenkins -c 'vagrant plugin install vagrant-berkshelf'
 RUN sed -i 's/mockbuild.util.CLONE_NEWNS/0/' /usr/sbin/mock
-RUN service sshd start
-RUN service sshd stop
+RUN service sshd start && service sshd stop
 
 EXPOSE 22
 CMD ["/usr/sbin/sshd", "-D"]
