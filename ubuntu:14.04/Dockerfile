@@ -7,7 +7,7 @@ RUN curl -o /tmp/foo.deb -k -L https://dl.bintray.com/mitchellh/vagrant/vagrant_
 RUN apt-get -y dist-upgrade
 RUN apt-get -y install debootstrap openssh-server git-all subversion mercurial wget
 RUN apt-get clean
-RUN useradd -u 1001 -g mock -s /bin/bash jenkins
+RUN useradd -u 1001 -s /bin/bash jenkins
 RUN printf "jenkins\njenkins\n" | passwd jenkins
 RUN su - jenkins -c '/opt/chefdk/embedded/bin/gem install knife-openstack kitchen-openstack'
 RUN su - jenkins -c 'vagrant plugin install vagrant-openstack-provider'
