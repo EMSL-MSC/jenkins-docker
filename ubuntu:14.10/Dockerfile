@@ -3,7 +3,7 @@ FROM ubuntu:14.10
 RUN curl -o /tmp/foo.deb http://opscode-omnibus-packages.s3.amazonaws.com/ubuntu/12.04/x86_64/chefdk_0.3.0-1_amd64.deb && dpkg -i /tmp/foo.deb && rm -f /tmp/foo.deb
 RUN curl -o /tmp/foo.deb -k https://dl.bintray.com/mitchellh/vagrant/vagrant_1.6.5_x86_64.deb && dpkg -i /tmp/foo.deb && rm -f /tmp/foo.deb
 RUN apt-get update && apt-get -y dist-upgrade && apt-get clean
-RUN apt-get -y install debootstrap openssh-server git-all subversion mercurial
+RUN apt-get -y install debootstrap openssh-server git-all subversion mercurial wget
 RUN useradd -u 1001 -g mock -s /bin/bash jenkins
 RUN printf "jenkins\njenkins\n" | passwd jenkins
 RUN su - jenkins -c '/opt/chefdk/embedded/bin/gem install knife-openstack kitchen-openstack'
