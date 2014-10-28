@@ -10,7 +10,7 @@ RUN printf "jenkins\njenkins\n" | passwd jenkins
 RUN su - jenkins -c '/opt/chefdk/embedded/bin/gem install knife-openstack kitchen-openstack'
 RUN su - jenkins -c 'vagrant plugin install vagrant-openstack-provider'
 RUN su - jenkins -c 'vagrant plugin install vagrant-berkshelf'
-RUN sed -i 's/mockbuild.util.CLONE_NEWNS/""/' /usr/sbin/mock
+RUN sed -i 's/mockbuild.util.CLONE_NEWNS/0/' /usr/sbin/mock
 RUN service sshd start
 RUN service sshd stop
 
