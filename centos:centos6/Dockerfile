@@ -11,8 +11,11 @@ RUN su - jenkins -c '/opt/chefdk/embedded/bin/gem install knife-openstack kitche
 RUN su - jenkins -c 'vagrant plugin install vagrant-openstack-provider'
 RUN su - jenkins -c 'vagrant plugin install vagrant-berkshelf'
 RUN sed -i 's/mockbuild.util.CLONE_NEWNS/0/' /usr/sbin/mock
+RUN sed -i 's/\(.*ccache_enable.*\) = True/\1 = False/' /etc/mock/site-defaults.cfg
 RUN wget -O /etc/mock/mic-6-x86_64.cfg http://ceph-gw.emsl.pnl.gov/swift/v1/mock_cfg/mic-6-x86_64.cfg && wget -O /etc/mock/cloud-6-x86_64.cfg http://ceph-gw.emsl.pnl.gov/swift/v1/mock_cfg/cloud-6-x86_64.cfg
 RUN service sshd start && service sshd stop
+
+RUN cd /etc/mock && for i in *.cfg ; do mock -r ${i/.cfg/} --init ; done
 
 EXPOSE 22
 CMD ["/usr/sbin/sshd", "-D"]

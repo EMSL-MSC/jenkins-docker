@@ -11,6 +11,7 @@ RUN su - jenkins -c '/opt/chefdk/embedded/bin/gem install knife-openstack kitche
 RUN su - jenkins -c 'vagrant plugin install vagrant-openstack-provider'
 RUN su - jenkins -c 'vagrant plugin install vagrant-berkshelf'
 RUN sed -i 's/mockbuild.util.CLONE_NEWNS/0/' /usr/sbin/mock
+RUN sed -i 's/\(.*ccache_enable.*\) = True/\1 = False/' /etc/mock/site-defaults.cfg
 RUN sshd-keygen
 
 EXPOSE 22
