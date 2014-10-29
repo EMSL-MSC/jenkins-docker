@@ -15,7 +15,5 @@ RUN sed -i 's/\(.*ccache_enable.*\) = True/\1 = False/' /etc/mock/site-defaults.
 RUN wget -O /etc/mock/mic-6-x86_64.cfg http://ceph-gw.emsl.pnl.gov/swift/v1/mock_cfg/mic-6-x86_64.cfg && wget -O /etc/mock/cloud-6-x86_64.cfg http://ceph-gw.emsl.pnl.gov/swift/v1/mock_cfg/cloud-6-x86_64.cfg
 RUN service sshd start && service sshd stop
 
-RUN cd /etc/mock && for i in *.cfg ; do su - jenkins -c 'mock -r '${i/.cfg/}' --init' ; done && for i in *.cfg ; do su - jenkins -c 'mock -r '${i/.cfg/}' --clean' ; done
-
 EXPOSE 22
 CMD ["/usr/sbin/sshd", "-D"]
