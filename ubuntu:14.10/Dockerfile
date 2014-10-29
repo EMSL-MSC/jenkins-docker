@@ -9,9 +9,9 @@ RUN apt-get -y install debootstrap openssh-server git-all subversion mercurial w
 RUN apt-get clean
 RUN useradd -u 1001 -s /bin/bash jenkins
 RUN printf "jenkins\njenkins\n" | passwd jenkins
-RUN su - jenkins -c '/opt/chefdk/embedded/bin/gem install knife-openstack kitchen-openstack'
-RUN su - jenkins -c 'vagrant plugin install vagrant-openstack-provider'
-RUN su - jenkins -c 'vagrant plugin install vagrant-berkshelf'
+#RUN su - jenkins -c '/opt/chefdk/embedded/bin/gem install knife-openstack kitchen-openstack'
+#RUN su - jenkins -c 'vagrant plugin install vagrant-openstack-provider'
+#RUN su - jenkins -c 'vagrant plugin install vagrant-berkshelf'
 
 EXPOSE 22
 CMD ["/usr/sbin/sshd", "-D"]
