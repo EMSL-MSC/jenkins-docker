@@ -14,7 +14,7 @@ RUN sed -i 's/mockbuild.util.CLONE_NEWNS/0/' /usr/sbin/mock
 RUN sed -i 's/\(.*ccache_enable.*\) = True/\1 = False/' /etc/mock/site-defaults.cfg
 RUN sshd-keygen
 
-RUN cd /etc/mock && for i in *.cfg ; do su - jenkins -c 'mock -r '${i/.cfg/}' --init' ; done
+RUN cd /etc/mock && for i in *.cfg ; do su - jenkins -c 'mock -r '${i/.cfg/}' --init' ; done && for i in *.cfg ; do su - jenkins -c 'mock -r '${i/.cfg/}' --clean' ; done
 
 EXPOSE 22
 CMD ["/usr/sbin/sshd", "-D"]
